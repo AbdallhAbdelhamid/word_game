@@ -8,6 +8,7 @@
 #include <limits>
 #include <random>
 #include <algorithm>
+#include <array>
 
 bool vector_contains_string(const std::vector<std::string>& string_vector, const std::string& string)
 {
@@ -21,9 +22,9 @@ bool vector_contains_string(const std::vector<std::string>& string_vector, const
     return false;
 }
 
-std::vector<int> get_buffets(const std::string& word)
+std::array<int,26> get_buffets(const std::string& word)
 {
-    std::vector<int> buffet(26,0);
+    std::array<int, 26> buffet{ 0 };
     for (char c : word)
     {
         buffet[c - 'a']++;
@@ -36,8 +37,8 @@ std::vector<int> get_buffets(const std::string& word)
 int calculate_score(const std::string& word1, const std::string& word2)
 {
     int score = 0;
-    std::vector<int> buffet1 = get_buffets(word1);
-    std::vector<int> buffet2 = get_buffets(word2);
+    std::array<int,26> buffet1 = get_buffets(word1);
+    std::array<int,26> buffet2 = get_buffets(word2);
     
     for (int i = 0; i < 26; i++)
     {
